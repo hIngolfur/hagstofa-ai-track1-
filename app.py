@@ -249,4 +249,9 @@ def spyrja_beint(spurning):
     else:
         return "Gat ekki túlkað fyrirspurnina eða fundið gögn út frá tiltæku metadata."
 
- 
+class SpurningRequest(BaseModel):
+    spurning: str
+
+@app.post("/spyrja")
+def spyrja_vefthjon(req: SpurningRequest):
+    return {"svar": spyrja_beint(req.spurning)}
